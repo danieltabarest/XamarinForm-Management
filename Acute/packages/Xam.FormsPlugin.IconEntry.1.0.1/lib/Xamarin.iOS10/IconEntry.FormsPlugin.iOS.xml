@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IconEntry.FormsPlugin.iOS</name>
+    </assembly>
+    <members>
+        <member name="T:IconEntry.FormsPlugin.iOS.IconEntryRenderer">
+            <summary>
+            IconEntry Renderer
+            </summary>
+        </member>
+        <member name="M:IconEntry.FormsPlugin.iOS.IconEntryRenderer.Init">
+            <summary>
+            Used for registration with dependency service
+            </summary>
+        </member>
+    </members>
+</doc>

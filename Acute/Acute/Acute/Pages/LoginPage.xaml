@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Acute.Pages.LoginPage"
+             xmlns:controls="clr-namespace:Acute.Controls" 
+             xmlns:behaviors="clr-namespace:Acute.Behaviors" 
+             xmlns:ie="clr-namespace:IconEntry.FormsPlugin.Abstractions;assembly=IconEntry.FormsPlugin.Abstractions"
+             BackgroundColor="#3A5174"
+             BackgroundImage="background.jpg"
+		    Title="{Binding PageTitle}">
+    <ContentPage.Content>
+        <StackLayout >
+            <Grid  BackgroundColor="#B73535" Padding="10,5,10,5" IsVisible="{Binding ErrorVisible}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+                <Label  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding ErrorMessage}" FontSize="Medium" />
+            </Grid>
+            <StackLayout Padding="30,0,30,0" VerticalOptions="CenterAndExpand">
+                <Label Text="{Binding MessageLogin}"  HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="26"></Label>
+                <StackLayout Padding="20,50,20,0"  x:Name="Form" Spacing="20">
+                    <Entry Placeholder="Username / Nom d'utilisateur" Text="{Binding Username}" BackgroundColor="Transparent" HeightRequest="40" x:Name="username">
+                        <Entry.Behaviors>
+                            <behaviors:ValidateOnTextChangedBehavior ValidateCommand="{Binding ValidateCommand}"/>
+                        </Entry.Behaviors>
+                        <Entry.TextColor>
+                            <OnPlatform x:TypeArguments="Color"
+                                    Android="White" 
+                                    iOS="White" />
+                        </Entry.TextColor>
+                        <Entry.PlaceholderColor>
+                            <OnPlatform x:TypeArguments="Color"
+                                    Android="White" 
+                                    iOS="White" />
+                        </Entry.PlaceholderColor>
+                    </Entry>
+                    <Entry Placeholder="Password / Mot de passe"  Text="{Binding Password}" BackgroundColor="Transparent" HeightRequest="40" IsPassword="True"  x:Name="password">
+                        <Entry.Behaviors>
+                            <behaviors:ValidateOnTextChangedBehavior ValidateCommand="{Binding ValidateCommand}"/>
+                        </Entry.Behaviors>
+                        <Entry.TextColor>
+                            <OnPlatform x:TypeArguments="Color"
+                                    Android="White" 
+                                    iOS="White" />
+                        </Entry.TextColor>
+                        <Entry.PlaceholderColor>
+                            <OnPlatform x:TypeArguments="Color"
+                                    Android="White" 
+                                    iOS="White" />
+                        </Entry.PlaceholderColor>
+                    </Entry>
+                    <!--<ie:IconEntry Placeholder="Username" Text="{Binding Username}" Icon="ic_account_black_18dp.png" HeightRequest="40" x:Name="username">
+                        <ie:IconEntry.Behaviors>
+                            <behaviors:ValidateOnTextChangedBehavior ValidateCommand="{Binding ValidateCommand}"/>
+                        </ie:IconEntry.Behaviors>
+                        <ie:IconEntry.TextColor>
+                            <OnPlatform x:TypeArguments="Color"
+                                    Android="White" 
+                                    iOS="Black" />
+                        </ie:IconEntry.TextColor>
+                        <ie:IconEntry.PlaceholderColor>
+                            <OnPlatform x:TypeArguments="Color"
+                                    Android="White" 
+                                    iOS="Black" />
+                        </ie:IconEntry.PlaceholderColor>
+                    </ie:IconEntry>
+                    <ie:IconEntry Placeholder="Password"  Text="{Binding Password}"  Icon="ic_key_variant_black_18dp.png"   HeightRequest="40" IsPassword="True"  x:Name="password">
+                        <ie:IconEntry.Behaviors>
+                            <behaviors:ValidateOnTextChangedBehavior ValidateCommand="{Binding ValidateCommand}"/>
+                        </ie:IconEntry.Behaviors>
+                        <ie:IconEntry.TextColor>
+                            <OnPlatform x:TypeArguments="Color"
+                                    Android="White" 
+                                    iOS="Black" />
+                        </ie:IconEntry.TextColor>
+                        <ie:IconEntry.PlaceholderColor>
+                            <OnPlatform x:TypeArguments="Color"
+                                    Android="White" 
+                                    iOS="Black" />
+                        </ie:IconEntry.PlaceholderColor>
+                    </ie:IconEntry>-->
+                    <Button 
+						            x:Name="LoginButton" 
+						            Text="Login / S'identifier" 
+						            Command="{Binding LoginCommand}" 
+						            WidthRequest="265"
+                                    HorizontalOptions="CenterAndExpand"
+						            FontSize="17" 
+						            BackgroundColor="#455D8B" 
+						            TextColor="White"
+                                    FontAttributes="Bold"
+                                    IsEnabled="{Binding IsEnabled}">
+                    </Button>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

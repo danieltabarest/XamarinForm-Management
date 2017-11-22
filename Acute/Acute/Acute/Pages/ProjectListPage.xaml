@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Acute.Pages.ProjectListPage"
+             x:Name="ProjectListPage"
+             xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+		     Title="{Binding PageTitle}"
+             Padding="0,10,0,10"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical">
+            <StackLayout Padding="20,0,20,20">
+                <ListView 
+                    x:Name="assignmentsList"
+                    ItemsSource="{Binding Project}" 
+                    RowHeight="44" 
+                                 IsPullToRefreshEnabled="True"
+                         RefreshCommand="{Binding RefreshCommand}"
+                         IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                    SeparatorColor="#C8C7CC" 
+                    HasUnevenRows="true"
+                    HorizontalOptions="EndAndExpand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal"
+                                    HorizontalOptions="FillAndExpand" 
+                                    VerticalOptions="FillAndExpand" 
+                                    Padding="0,0,0,10"
+                                    BackgroundColor="White" >
+                                    <!--<StackLayout Orientation="Horizontal"
+                                            HorizontalOptions="FillAndExpand" 
+                                            VerticalOptions="FillAndExpand" Spacing="0" Padding="0">-->
+                                    <!--<StackLayout VerticalOptions="StartAndExpand" Orientation="Vertical" Padding="25,5,25,5" HorizontalOptions="StartAndExpand"  >-->
+                                    <StackLayout Orientation="Vertical" Padding="0" Spacing="0">
+                                        <Label   Text="{Binding Name}" FontSize="Micro"         HorizontalOptions="StartAndExpand" 
+                                              VerticalOptions="StartAndExpand" ></Label>
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label   TextColor="Gray" Text="Description" FontSize="Micro"       HorizontalOptions="StartAndExpand" 
+                                             VerticalOptions="StartAndExpand"></Label>
+
+                                            <Button x:Name="Image" Image="icono_interogacion.png"   HorizontalOptions="StartAndExpand"         HeightRequest="16"  VerticalOptions="Center" WidthRequest="18"   
+                                                       Command="{Binding Source={x:Reference ProjectListPage}, Path=BindingContext.OnHelpClicked}" 
+                                                        CommandParameter ="{Binding}"
+                                                     >
+                                                <!--<Button.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                CommandParameter="{Binding}"
+                                                Tapped="OnTapGestureRecognizerTappedDescription"/>
+                                                </Button.GestureRecognizers>-->
+                                            </Button>
+
+                                            <!--<Image x:Name="Image" Source="icono_interogacion.png"   HorizontalOptions="StartAndExpand"       
+                                           HeightRequest="18"  VerticalOptions="Center" WidthRequest="20"   BackgroundColor="#6185BC" >
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                CommandParameter="{Binding}"
+                                                Tapped="OnTapGestureRecognizerTappedDescription"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>-->
+
+
+                                            <!--<ffimageloading:CachedImage HorizontalOptions="StartAndExpand" VerticalOptions="Center"
+                                                        WidthRequest="20" HeightRequest="18"  BackgroundColor="#6185BC" 
+                                                        Source = "icono_interogacion.png">
+                                                <ffimageloading:CachedImage.Transformations>
+                                                    <fftransformations:RoundedTransformation Radius="100"/>
+                                                </ffimageloading:CachedImage.Transformations>
+                                                <ffimageloading:CachedImage.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                CommandParameter="{Binding}"
+                                                Tapped="OnTapGestureRecognizerTappedDescription"/>
+                                                </ffimageloading:CachedImage.GestureRecognizers>
+                                            </ffimageloading:CachedImage>-->
+                                        </StackLayout>
+                                    </StackLayout>
+
+
+
+                                    <!--</StackLayout>-->
+
+
+
+
+                                    <StackLayout Orientation="Vertical" Padding="0" Spacing="0"   HorizontalOptions="EndAndExpand">
+                                        <Label   Text="Due Date" FontSize="Micro"   TextColor="Black"    HorizontalOptions="StartAndExpand" 
+                                                 VerticalOptions="StartAndExpand"></Label>
+                                        <Label   Text="{Binding EndDate}"  FontSize="Micro"   TextColor="Gray"                          HorizontalOptions="StartAndExpand" 
+                                                 VerticalOptions="StartAndExpand"></Label>
+                                    </StackLayout>
+
+
+                                    <Button 
+                                    HorizontalOptions="EndAndExpand"
+                                    VerticalOptions="Center"
+						            x:Name="MoreButton" 
+                                    Image="icono_mas.png"
+                                    WidthRequest="35" 
+                                    HeightRequest="25" 
+                                    Command="{Binding Source={x:Reference ProjectListPage}, Path=BindingContext.OnProjectClicked}" 
+                                    CommandParameter ="{Binding}"
+						             >
+                                    </Button>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Footer>
+                        <Label></Label>
+                    </ListView.Footer>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

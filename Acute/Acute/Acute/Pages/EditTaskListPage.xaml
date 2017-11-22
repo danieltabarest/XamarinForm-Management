@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Acute.Pages.EditTaskListPage"
+              xmlns:local="clr-namespace:Acute.Converters"
+             xmlns:controls="clr-namespace:Acute.Controls" 
+            BackgroundColor="White"
+             x:Name="EditTaskListPage"
+            Title="{Binding PageTitle}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Icon="hamburger.png" Command="{Binding OpenMenuCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout >
+            <Grid  BackgroundColor="#B73535" Padding="10,5,10,5" IsVisible="{Binding ErrorVisible}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+                <Label  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding ErrorMessage}" FontSize="Medium" />
+            </Grid>
+            <StackLayout Orientation="Horizontal" Padding="10,0,10,0"  BackgroundColor="WhiteSmoke"  HeightRequest="35"    >
+                <Label Text="EDIT TASKLOG" FontSize="Small" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"  TextColor="Black"></Label>
+            </StackLayout >
+            <ScrollView Orientation="Vertical">
+                <StackLayout Padding="10" Spacing="1" VerticalOptions="CenterAndExpand">
+                    <StackLayout Padding="0,10,5,0">
+                        <Label Text="{Binding Username}" FontSize="Small" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" TextColor="Gray"></Label>
+                    </StackLayout>
+                    <StackLayout  Orientation="Horizontal" Padding="0,10,5,0">
+                        <Grid  HorizontalOptions="Center" ColumnSpacing="1" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="0.6*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Text="ID" TextColor="Gray" Grid.Column="0" HorizontalOptions="StartAndExpand" Grid.Row="0" />
+                            <Label Text="Date*"  TextColor="Gray" Grid.Column="1" HorizontalOptions="StartAndExpand" Grid.Row="0"/>
+                            <Label Text="Hours*" TextColor="Gray"  Grid.Column="2" HorizontalOptions="StartAndExpand" Grid.Row="0"/>
+                            <Label Text="%R&amp;D" TextColor="Gray"  Grid.Column="3" HorizontalOptions="StartAndExpand" Grid.Row="0"/>
+                            <Entry Text="{Binding ID, Mode=TwoWay}" TextColor="Black" Grid.Column="0"  IsEnabled="False" WidthRequest="110" HorizontalOptions="StartAndExpand" Grid.Row="1" />
+                            <DatePicker Date="{Binding Fecha, Mode=TwoWay}"  TextColor="Black" Grid.Column="1" WidthRequest="110" HorizontalOptions="StartAndExpand" Grid.Row="1"/>
+                            <!--<TimePicker Time="{Binding Hora, Mode=TwoWay, Converter={StaticResource DateTimeToTimeSpanConverter}}" Grid.Column="2" HorizontalOptions="StartAndExpand" Grid.Row="1" />-->
+                            <!--<Entry Text="Date"  TextColor="Gray" Grid.Column="0" HorizontalOptions="StartAndExpand" Grid.Row="1"/>-->
+                            <!--<Entry Text="{Binding Hours, Mode=TwoWay}" TextColor="Black"   Grid.Column="2" WidthRequest="110"  Keyboard="Numeric" HorizontalOptions="StartAndExpand" Grid.Row="1"/>-->
+                            <controls:DoneEntry Text="{Binding Hours, Mode=TwoWay}" TextColor="Black"   Grid.Column="2" WidthRequest="110"  Keyboard="Numeric" HorizontalOptions="StartAndExpand" Grid.Row="1"/>
+                            <controls:DoneEntry  Text="{Binding Percentage, Mode=TwoWay}" TextColor="Black" WidthRequest="110" Keyboard="Numeric"  Grid.Column="3" HorizontalOptions="StartAndExpand" Grid.Row="1" />
+                            <!--<Entry Text="{Binding Percentage, Mode=TwoWay}" TextColor="Black" WidthRequest="110" Keyboard="Numeric"  Grid.Column="3" HorizontalOptions="StartAndExpand" Grid.Row="1"/>-->
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout>
+
+                        <!--<StackLayout Orientation="Horizontal" VerticalOptions="Center"  Spacing="0" Padding="0">
+                            <Label Text="Add Comments" FontSize="Small"  VerticalOptions="Center" TextColor="Black" FontAttributes="Bold"></Label>
+                            <Button  HorizontalOptions="StartAndExpand" VerticalOptions="Center" BackgroundColor="Transparent" Image="microphone.png"  Command="{Binding SumaryCommand}" CommandParameter ="{Binding}"  ></Button>
+                        </StackLayout>-->
+                        <StackLayout Orientation="Horizontal" Spacing="0"  Padding="0,15,0,5"   VerticalOptions="Center" >
+                            <Label Text="Add Comments" FontSize="Small" VerticalOptions="Center" TextColor="Gray" FontAttributes="Bold"></Label>
+                            <Button  HorizontalOptions="StartAndExpand"  VerticalOptions="Center"  HeightRequest="20" BackgroundColor="Transparent" Image="microphone.png"  Command="{Binding SpeechRecognitionCommand}" ></Button>
+                            <Label Text="{Binding ListenText}"  FontSize="Small"  HorizontalOptions="StartAndExpand"  VerticalOptions="Center" TextColor="Red" FontAttributes="Bold" ></Label>
+                        </StackLayout>
+
+                        <!--<Button Image="bluepencil.png" Text="Comments*" HorizontalOptions="StartAndExpand" TextColor="Gray" FontSize="Small" ContentLayout="Right,2" BackgroundColor="Transparent"   ></Button>-->
+
+                        <StackLayout BackgroundColor="LightGray" Padding="1" HeightRequest="100">
+                            <ScrollView Orientation="Vertical" x:Name="MyScrollView" Padding="1" BackgroundColor="LightGray">
+                                <controls:ExpandableEditor  x:Name="MyEditor"   Text="{Binding TextSpeech, Mode=TwoWay}" HeightRequest="100"  TextColor="Black"   HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
+                                </controls:ExpandableEditor>
+                            </ScrollView>
+                        </StackLayout>
+                        <!--<ScrollView Grid.RowSpan="3" Grid.Column="1"  Orientation="Vertical">
+                            <Editor  Margin="1" x:Name="Narrative" Text="Binding _Activiy.myValidation, Mode=TwoWay}"  TextColor="Gray"  VerticalOptions="FillAndExpand">
+                            </Editor>
+                        </ScrollView>-->
+                    </StackLayout>
+             
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center"  Spacing="0" Padding="0" >
+                        <Label Text="Attachment" TextColor="Gray" FontSize="Small" VerticalOptions="Center"   FontAttributes="Bold"></Label>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center"  Spacing="0" Padding="0" >
+                            <Label Text="Add Attachment"   HorizontalOptions="EndAndExpand" VerticalOptions="Center"   TextColor="Black" FontSize="Small" FontAttributes="Bold"></Label>
+                            <Button  HorizontalOptions="EndAndExpand"  Image="blueplus.png"   HeightRequest="60"  WidthRequest="60" VerticalOptions="CenterAndExpand"  Command="{Binding AddAttachmentCommand}" BackgroundColor="Transparent"  >
+                            </Button>
+                        </StackLayout>
+                        <!--BackgroundColor="#455D8B"-->
+                    </StackLayout>
+
+                    <StackLayout VerticalOptions="StartAndExpand" >
+                        <!--BackgroundColor="#f5f5f5"-->
+                        <ListView 
+                        x:Name="assignmentsList"
+                             ItemsSource="{Binding Attachments}" 
+                        RowHeight="44" 
+                                             IsPullToRefreshEnabled="True"
+                         RefreshCommand="{Binding RefreshCommand}"
+                         IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                        HeightRequest="200"
+                        SeparatorColor="#C8C7CC" 
+                        BackgroundColor="White"
+                        HasUnevenRows="true"
+                        HorizontalOptions="EndAndExpand">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal"
+                                    HorizontalOptions="FillAndExpand" 
+                                    VerticalOptions="FillAndExpand" 
+                                    Padding="0,0,25,3"
+                                    BackgroundColor="White" Spacing="5">
+                                            <Image x:Name="Image" Source="checkedmark.png"   HorizontalOptions="StartAndExpand"                      WidthRequest="40" 
+                                            HeightRequest="30"  VerticalOptions="Center" >
+                                            </Image>
+
+                                            <StackLayout Padding="0" VerticalOptions="Center">
+                                                <Label    Text="{Binding name}" TextColor="Blue" FontSize="Micro"       HorizontalOptions="StartAndExpand" 
+                                             VerticalOptions="Center"></Label>
+                                                <BoxView BackgroundColor="White" HeightRequest="1" Margin="0,-8,0,0" />
+                                            </StackLayout>
+
+                                            <Button 
+                                            HorizontalOptions="EndAndExpand"
+                                            VerticalOptions="Center"
+						                    x:Name="MoreButton" 
+                                            Image="TrashBin.png"
+                                            WidthRequest="40" 
+                                            HeightRequest="30" 
+                                            Command="{Binding Source={x:Reference EditTaskListPage}, Path=BindingContext.OnAttachClicked}" 
+                                            CommandParameter ="{Binding}"
+						                     >
+                                            </Button>
+
+
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Button Text="Save"  Command="{Binding SaveCommand}"   TextColor="White"  HorizontalOptions="StartAndExpand" FontSize="Micro" BackgroundColor="#6185BC" WidthRequest="150" HeightRequest="40"  >
+                        </Button>
+                        <Button Text="Cancel"  Command="{Binding CancelCommand}"  TextColor="White" WidthRequest="150"  HorizontalOptions="StartAndExpand" FontSize="Micro" HeightRequest="40"  BackgroundColor="Gray"  >
+                        </Button>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

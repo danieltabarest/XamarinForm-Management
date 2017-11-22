@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Acute.Pages.TaskContentPage"
+             x:Name="TaskContentPage"
+              xmlns:controls="clr-namespace:Acute.Controls" 
+		        Title="{Binding PageTitle}"
+             BackgroundColor="White">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  x:Name="_toolbaritem" Icon="hamburger.png" Command="{Binding OpenMenuCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical">
+            <StackLayout Padding="10,0,10,15">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="TASK LOG LIST" FontSize="16" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" TextColor="Black"></Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center"  Spacing="0" Padding="0" >
+                        <Label Text="Add new tasklog"   HorizontalOptions="EndAndExpand" VerticalOptions="Center"   TextColor="Black" FontSize="Small" FontAttributes="Bold"></Label>
+                        <Button  HorizontalOptions="EndAndExpand"  Image="blueplus.png"   HeightRequest="60"  WidthRequest="60" VerticalOptions="CenterAndExpand"  Command="{Binding AddTaskCommand}" BackgroundColor="Transparent"  >
+                        </Button>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout VerticalOptions="Start" >
+                    <!--BackgroundColor="#f5f5f5"-->
+                    <ListView 
+                        x:Name="assignmentsList"
+                        ItemsSource="{Binding TaskLog}" 
+                        SelectedItem="{Binding SelectedProject}" 
+                        RowHeight="60" 
+                        IsPullToRefreshEnabled="True"
+                         RefreshCommand="{Binding RefreshCommand}"
+                         IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                        HeightRequest="280"
+                        SeparatorColor="#C8C7CC" 
+                        BackgroundColor="White"
+                        HasUnevenRows="False"
+                        HorizontalOptions="EndAndExpand">
+                        <ListView.Header  >
+                            <Grid  BackgroundColor="#F9F9F9" VerticalOptions="Center"  Padding="0,7,0,0" HeightRequest="25"  >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label Text="ID" TextColor="Gray" Grid.Column="0" VerticalTextAlignment="Center" FontSize="Small" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Grid.Row="0" />
+                                <Label Text="DATE"  TextColor="Gray" Grid.Column="1" FontSize="Small" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Grid.Row="0"/>
+                                <Label Text="COMMENTS" TextColor="Gray"  Grid.Column="2" FontSize="Small" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Grid.Row="0"/>
+                            </Grid>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell View.Margin="0" Height="10">
+                                    <Grid  Grid.ColumnSpacing="0" VerticalOptions="Center" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="0.8*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label TextColor="Black"  Text="{Binding idtasklog}" Grid.Column="0" Grid.Row="0" FontSize="Small"  FontAttributes="Bold"    HorizontalOptions="Start" VerticalOptions="Center" ></Label>
+                                        <Label  TextColor="Black" Text="{Binding date}"  Grid.Column="1" Grid.Row="0"  FontSize="Micro"               HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                        <Label  TextColor="Black" Text="{Binding comment}" HeightRequest="15"  Grid.Column="2" Grid.Row="0"  FontSize="Micro"                           HorizontalOptions="Start" VerticalOptions="Fill"></Label>
+                                        <Image Source="bluepencil.png"  Grid.Column="3" Grid.Row="0"  HorizontalOptions="Center"              x:Name="Edittask"     VerticalOptions="Center"  >
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                CommandParameter="{Binding}"
+                                                Tapped="OnTapGestureRecognizerTapped"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"  HorizontalOptions="StartAndExpand" VerticalOptions="Start"   Padding="0,5,0,0">
+                    <Label Text="Validation/Sumary" FontSize="Small" VerticalOptions="Center"   FontAttributes="Bold" TextColor="Black"></Label>
+                    <Button  HorizontalOptions="Start" VerticalOptions="Center"   Image="icono_interogacion.png"   WidthRequest="15" HeightRequest="16"
+                             Command="{Binding SumaryCommand}" CommandParameter ="{Binding}"  >
+                        <!--<Button Text="Validation/Sumary"  ContentLayout="Right,2" FontAttributes="Bold" TextColor="Black"  HorizontalOptions="StartAndExpand" FontSize="Micro" Image="icono_interogacion.png" BackgroundColor="Transparent" Command="{Binding SumaryCommand}" CommandParameter ="{Binding}"  >-->
+                    </Button>
+                </StackLayout>
+                <!--<StackLayout Orientation="Horizontal"  HorizontalOptions="StartAndExpand">-->
+                <StackLayout Padding="0,15,10,10"  >
+                    <StackLayout Orientation="Horizontal" Spacing="0" Padding="0"  VerticalOptions="StartAndExpand" >
+                        <Label Text="Add Comments" FontSize="Small" VerticalOptions="Center" TextColor="Black" FontAttributes="Bold"></Label>
+                        <Button  HorizontalOptions="StartAndExpand"  VerticalOptions="Center"  HeightRequest="20" BackgroundColor="Transparent" Image="microphone.png"  Command="{Binding SpeechRecognitionCommand}" ></Button>
+                        <Label Text="{Binding ListenText}"  FontSize="Small"  HorizontalOptions="StartAndExpand"  VerticalOptions="Center" TextColor="Red" FontAttributes="Bold" ></Label>
+                    </StackLayout>
+                    <!--<Button Image="bluepencil.png" Text="Comments" HorizontalOptions="StartAndExpand" TextColor="Black" FontSize="Micro" ContentLayout="Right,2" BackgroundColor="Transparent" Command="{Binding MoreCommand}" CommandParameter ="{Binding}" ></Button>-->
+                    <!--</StackLayout>-->
+                    <StackLayout BackgroundColor="LightGray" Padding="1" HeightRequest="100">
+                        <ScrollView Orientation="Vertical" Padding="1" x:Name="MyScrollView"   >
+                            <controls:ExpandableEditor x:Name="MyEditor"   Text="{Binding TextSpeech, Mode=TwoWay}" HeightRequest="100"  TextColor="Black"   HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
+                            </controls:ExpandableEditor>
+                        </ScrollView>
+                    </StackLayout>
+                    <!--<ScrollView Grid.RowSpan="3" Grid.Column="1"  Orientation="Vertical">
+                        <Editor  Margin="1" TextChanged="Narrative_TextChanged" Text="{Binding TextSpeech, Mode=TwoWay}"  TextColor="Black"   HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
+                        </Editor>
+                    </ScrollView>-->
+                </StackLayout>
+                <Button 
+						            x:Name="LoginButton" 
+						            Text="Save" 
+						            Command="{Binding SaveCommand}" 
+						            WidthRequest="600"
+                                    HorizontalOptions="CenterAndExpand"
+                                    VerticalOptions="EndAndExpand"
+						            FontSize="17" 
+						            BackgroundColor="#6185BC" 
+						            TextColor="White"
+                                    FontAttributes="Bold"
+                                    >
+                    <!--IsEnabled="{Binding IsEnabled}"-->
+                </Button>
+                <!--<Editor Text="sdfasdfsafsdfafdadfasdf" FontSize="Micro"></Editor>-->
+                <!--<Label Text="Last update" TextColor="Black" FontSize="Small" FontAttributes="Bold"></Label>-->
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

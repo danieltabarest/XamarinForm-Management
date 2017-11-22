@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Acute.Pages.MenuPage"
+    BackgroundImage="background.png"
+    Icon="hamburger.png"
+    Title="Menu">
+    <RelativeLayout Padding="0">
+        <Image
+            
+                                 Aspect="Fill"
+                                 Source="background.png"
+                                 RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                                 RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}">
+            <Image.IsVisible>
+                <OnPlatform x:TypeArguments="x:Boolean"
+                                    Android="true"/>
+            </Image.IsVisible>
+        </Image>
+        <StackLayout Padding="8,40,8,8" Spacing="50">
+            <Label Text="Company Name" HorizontalTextAlignment="Center"  HorizontalOptions="Center" TextColor="White" FontSize="Medium"></Label>
+            <ListView 
+            BackgroundColor="Transparent"
+            ItemsSource="{Binding Menu}"
+            HasUnevenRows="True">
+                <!--SeparatorVisibility="Default"
+            SeparatorColor="WhiteSmoke"-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid RowSpacing="40" Padding="0,15,0,15">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateCommand}"/>
+                                </Grid.GestureRecognizers>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <!--<iconize:IconImage Icon="{Binding Icon}" IconColor="Blue" WidthRequest="50" HeightRequest="50" />-->
+                                <Image 
+                                Source="{Binding Icon}"
+                                WidthRequest="30"
+                                HeightRequest="30"/>
+                                <Label 
+                                Grid.Column="1"
+                                TextColor="White"
+                                VerticalOptions="Center"
+                                Text="{Binding Title}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </RelativeLayout>
+</ContentPage>

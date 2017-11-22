@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Plugin.Iconize.FontAwesome.iOS</name>
+    </assembly>
+    <members>
+        <member name="T:Plugin.Iconize.Fonts.FontAwesomeCollection">
+            <summary>
+            Defines the <see cref="T:Plugin.Iconize.Fonts.FontAwesomeCollection" /> icon collection.
+            </summary>
+        </member>
+        <member name="P:Plugin.Iconize.Fonts.FontAwesomeCollection.Icons">
+            <summary>
+            Gets the icons.
+            </summary>
+            <value>
+            The icons.
+            </value>
+        </member>
+        <member name="M:Plugin.Iconize.Fonts.FontAwesomeCollection.#cctor">
+            <summary>
+            Initializes the <see cref="T:Plugin.Iconize.Fonts.FontAwesomeCollection" /> class.
+            </summary>
+        </member>
+        <member name="T:Plugin.Iconize.Fonts.FontAwesomeModule">
+            <summary>
+            Defines the <see cref="T:Plugin.Iconize.Fonts.FontAwesomeModule" /> icon module.
+            </summary>
+            <seealso cref="T:Plugin.Iconize.IconModule" />
+        </member>
+        <member name="M:Plugin.Iconize.Fonts.FontAwesomeModule.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Plugin.Iconize.Fonts.FontAwesomeModule" /> class.
+            </summary>
+        </member>
+    </members>
+</doc>

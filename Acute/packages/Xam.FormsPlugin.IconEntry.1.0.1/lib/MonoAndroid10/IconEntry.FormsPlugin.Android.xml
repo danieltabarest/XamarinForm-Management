@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IconEntry.FormsPlugin.Android</name>
+    </assembly>
+    <members>
+        <member name="T:IconEntry.FormsPlugin.Android.IconEntryRenderer">
+            <summary>
+            IconEntry Renderer
+            </summary>
+        </member>
+    </members>
+</doc>

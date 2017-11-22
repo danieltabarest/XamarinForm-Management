@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IconEntry.FormsPlugin.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:IconEntry.FormsPlugin.Abstractions.IconEntry">
+            <summary>
+            IconEntry Interface
+            </summary>
+        </member>
+        <member name="F:IconEntry.FormsPlugin.Abstractions.IconEntry.IconProperty">
+            <summary> 
+            The font property 
+            </summary> 
+        </member>
+    </members>
+</doc>

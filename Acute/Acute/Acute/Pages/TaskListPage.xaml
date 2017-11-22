@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+               x:Name="TaskListPage"
+             x:Class="Acute.Pages.TaskListPage">
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical">
+            <StackLayout HeightRequest="50" Orientation="Horizontal" Padding="15,5,15,5" >
+                <!--<StackLayout Orientation="Horizontal" Padding="25,5,25,5"
+                                    HorizontalOptions="FillAndExpand" 
+                                    VerticalOptions="FillAndExpand" >-->
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Start" Padding="0" Spacing="3" Orientation="Vertical">
+                    <!--Padding="25,5,25,5"-->
+                    <Label   Text="{Binding name}" FontSize="Micro"  TextColor="Black" HorizontalOptions="Start" 
+                                                  VerticalOptions="StartAndExpand" ></Label>
+                    <StackLayout Orientation="Horizontal" Padding="0" Spacing="3">
+
+                        <Label   Text="Description" FontSize="Micro"   TextColor="Gray"    HorizontalOptions="Start" 
+                                                 VerticalOptions="StartAndExpand"></Label>
+
+
+                        <Image x:Name="Image" Source="icono_interogacion.png" HorizontalOptions="StartAndExpand" HeightRequest="15"  VerticalOptions="StartAndExpand" WidthRequest="14"   >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                CommandParameter="{Binding}"
+                                Tapped="OnTapGestureRecognizerTappedDescription"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+
+                        <!--<Button x:Name="Image" Image="ic_help_white_18dp.png"   HorizontalOptions="StartAndExpand" HeightRequest="15"  VerticalOptions="Center" WidthRequest="14"  BackgroundColor="#6185BC" 
+                                                       Command="{Binding Source={x:Reference TaskListPage}, Path=BindingContext.OnHelpClicked}" 
+                                                        CommandParameter ="{Binding}"></Button>-->
+
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center" >
+
+                    <StackLayout Orientation="Vertical" Padding="0,0,40,0" Spacing="3" HorizontalOptions="EndAndExpand" >
+                        <Label   Text="Due Date" FontSize="Micro"   TextColor="Black"    HorizontalOptions="StartAndExpand" 
+                                                 VerticalOptions="EndAndExpand"></Label>
+                        <Label   Text="{Binding startDate}" FontSize="Micro"   TextColor="Gray"    HorizontalOptions="StartAndExpand" 
+                                                 VerticalOptions="CenterAndExpand"></Label>
+                    </StackLayout>
+
+
+                    <Image Source="icono_mas.png"   HorizontalOptions="End" HeightRequest="25"  VerticalOptions="Center" WidthRequest="35" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                CommandParameter="{Binding}"
+                                Tapped="OnTapGestureRecognizerTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+
+            </StackLayout>
+            <!--</StackLayout>-->
+        </ScrollView>
+    </ContentPage.Content>
+</ContentView>
